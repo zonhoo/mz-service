@@ -85,15 +85,13 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin'],function(){
     Route::get('user/{id}/avatar',[
         'as'=>'admin.user.avatar','uses'=>'UserController@editAvatar'
     ]);
-<<<<<<< HEAD
+
     Route::post('user/update-avatar',[
         'as'=>'admin.user.update-avatar','uses'=>'UserController@Avatar'
-=======
+    ]);
     Route::post('user/{id}/updateAavatar',[
         'as'=>'admin.user.update-avatar','uses'=>'UserController@updateAvatar'
->>>>>>> dev
     ]);
-
              
     /*
      *角色部分
