@@ -1,0 +1,11 @@
+/node_modules
+.env
+/public/uploads/cover/*
+/public/uploads/posts/*
+/public/uploads/version/*
+/public/uploads/ueditor/*
+<<<<<<< HEAD
+/public/uploads/avatar/*
+=======
+/public/uploads/avatar/*
+>>>>>>> dev
