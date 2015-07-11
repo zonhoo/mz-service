@@ -144,7 +144,7 @@
         {
             Dropzone.options.dropZone={
                 paramName: "file", // The name that will be used to transfer the file
-                maxFilesize: 2, // MB
+                maxFilesize: 50, // MB
                 autoProcessQueue: false,//关闭自动上传
                 uploadMultiple:1,
                 addRemoveLinks: true,
