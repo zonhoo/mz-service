@@ -17,7 +17,7 @@ class VersionController extends Controller {
 	public function getLastVersion()
 	{
 		//获取最新版本信息
-         $version = Version::orderBy('created_at')->first();
+         $version = Version::orderBy('created_at','DESC')->first();
         return response()->json($version);
 	}
 
