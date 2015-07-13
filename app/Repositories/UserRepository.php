@@ -140,6 +140,6 @@ class UserRepository {
 
         }
 
-        return $user;
+        return User::with('location')->find($user->id);
     }
 }
