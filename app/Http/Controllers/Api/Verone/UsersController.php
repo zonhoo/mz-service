@@ -89,7 +89,7 @@ class UsersController extends Controller {
             return response()->json($v->errors());
         }
 
-        $user = User::find($id);
+        $user = User::with('location')->find($id);
         if($user->id){
             if($request->input('nickname')) $user->nickname = $request->input('nickname');
             $user->sex = $request->input('sex')!=1 || $request->input('sex')!=2 ? 0 : $request->input('sex');
@@ -103,13 +103,13 @@ class UsersController extends Controller {
                 'street'=>$request->input('street'),
                 'address'=>$request->input('address'),
             ];
-
-            if(!$user->location())
+            $userLocal = Location::where('user_id','=',$user->id)->first();
+            if(!$userLocal)
             {
                 $location = new Location($loca);
                 $user->location()->save($location);
             }else{
-                $user->location()->update($loca);
+                Location::where('user_id','=',$user->id)->first()->update($loca);
             }
 
             if($user->id){
