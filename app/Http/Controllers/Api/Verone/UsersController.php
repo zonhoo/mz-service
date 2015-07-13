@@ -92,7 +92,8 @@ class UsersController extends Controller {
         $user = User::with('location')->find($id);
         if($user->id){
             if($request->input('nickname')) $user->nickname = $request->input('nickname');
-            $user->sex = $request->input('sex')!=1 || $request->input('sex')!=2 ? 0 : $request->input('sex');
+            $user->sex = ($request->input('sex')==1 || $request->input('sex')==2) ? $request->input('sex') : 0;
+            
             if($request->input('signature')) $user->signature = $request->input('signature');
             $user->save();
             $loca = [
