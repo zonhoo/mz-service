@@ -93,9 +93,9 @@ class UsersController extends Controller {
         if($user->id){
             if($request->input('nickname')) $user->nickname = $request->input('nickname');
             $user->sex = ($request->input('sex')==1 || $request->input('sex')==2) ? $request->input('sex') : 0;
-            
             if($request->input('signature')) $user->signature = $request->input('signature');
             $user->save();
+
             $loca = [
                 'country'=>$request->input('country'),
                 'province'=>$request->input('province'),
@@ -105,12 +105,19 @@ class UsersController extends Controller {
                 'address'=>$request->input('address'),
             ];
             $userLocal = Location::where('user_id','=',$user->id)->first();
-            if(!$userLocal)
+            if(!$userLocal->user_id)
             {
                 $location = new Location($loca);
                 $user->location()->save($location);
             }else{
-                Location::where('user_id','=',$user->id)->first()->update($loca);
+                //Location::where('user_id','=',$user->id)->update($loca);
+                $user->location->country = $request->input('country');
+                $user->location->province = $request->input('province');
+                $user->location->city = $request->input('city');
+                $user->location->area = $request->input('area');
+                $user->location->street = $request->input('street');
+                $user->location->address = $request->input('address');
+                $user->push();
             }
 
             if($user->id){
