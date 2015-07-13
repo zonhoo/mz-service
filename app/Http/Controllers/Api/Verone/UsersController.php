@@ -111,12 +111,12 @@ class UsersController extends Controller {
                 $user->location()->save($location);
             }else{
                 //Location::where('user_id','=',$user->id)->update($loca);
-                $user->location->country = $request->input('country');
-                $user->location->province = $request->input('province');
-                $user->location->city = $request->input('city');
-                $user->location->area = $request->input('area');
-                $user->location->street = $request->input('street');
-                $user->location->address = $request->input('address');
+                if($request->input('country')) $user->location->country = $request->input('country');
+                if($request->input('province')) $user->location->province = $request->input('province');
+                if($request->input('city')) $user->location->city = $request->input('city');
+                if($request->input('area')) $user->location->area = $request->input('area');
+                if($request->input('street')) $user->location->street = $request->input('street');
+                if($request->input('address')) $user->location->address = $request->input('address');
                 $user->push();
             }
 
